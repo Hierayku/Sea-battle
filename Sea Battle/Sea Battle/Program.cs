@@ -3,12 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 
-//6 days 
-// ~31 hours
-// 
-// Заметка на завтра:
-//   1) Нужно сделать ИИ компьютеру, что бы при попадании в корабль он пытался найти часть корабля рядом (в рандомную сторону)
-//   2) При уничтожении корабля все равно выводится что я просто попал в него
+//7 days 
+// ~36 hours
 
 namespace Sea_Battle
 {
@@ -1218,36 +1214,36 @@ namespace Sea_Battle
             //start
 
             ////greetings and instruction
-            //DisplayMessage("Expand the game to full screen to avoid bugs/glitches. *PAUSE*Then press any key to read short instruction and start sea battle.", 0, 50, true, true);
+            DisplayMessage("Expand the game to full screen to avoid bugs/glitches. *PAUSE*Then press any key to read short instruction and start sea battle.", 0, 50, true, true);
 
 
-            //DisplayMessage("Hi! *PAUSE*I am Dima and this is my game \"Sea Battle\". *PAUSE*I have spent X days and Y hours of continuous work making it. *PAUSE*Press any key to read short instruction.", 1, 50, true, true);
+            DisplayMessage("Hi! *PAUSE*I am Dima and this is my game \"Sea Battle\". *PAUSE*I have spent 7 days and about 36 hours of continuous work making it. *PAUSE*Press any key to read short instruction.", 1, 50, true, true);
 
-            //DisplayMessage("Each player have 10 ships : 1 four-segmented, 2 three-segmented, 3 two-segmented and 4 one-segmented. *PAUSE*You have to destroy all enemy ships and hope that enemy won't do that earlier.", 2, 50, true, false);
+            DisplayMessage("Each player have 10 ships : 1 four-segmented, 2 three-segmented, 3 two-segmented and 4 one-segmented. *PAUSE*You have to destroy all enemy ships and hope that enemy won't do that earlier.", 2, 50, true, false);
 
-            //DisplayMessage("\t\t\t\t\t\t\t  Damaged", 8, 20, true, false); //don't tell me about this 4 lines, i know this is horrible
-            //DisplayMessage("\t\t\t  Full\t\t  Alive\t\t  Alive\t\t  Destroyed", 9, 20, true, false);
-            //DisplayMessage("\t  Water\t\t  Water\t\t  Ship\t\t  Ship\t\t  Ship", 10, 20, true, false);
-            //DisplayMessage("\t  Cell\t\t  Cell\t\t  Cell\t\t  Cell \t\t  Cell", 11, 20, true, false);
+            DisplayMessage("\t\t\t\t\t\t\t  Damaged", 8, 20, true, false); //don't tell me about this 4 lines, i know this is horrible
+            DisplayMessage("\t\t\t  Full\t\t  Alive\t\t  Alive\t\t  Destroyed", 9, 20, true, false);
+            DisplayMessage("\t  Water\t\t  Water\t\t  Ship\t\t  Ship\t\t  Ship", 10, 20, true, false);
+            DisplayMessage("\t  Cell\t\t  Cell\t\t  Cell\t\t  Cell \t\t  Cell", 11, 20, true, false);
 
-            //Thread.Sleep(250);
-            //DrawOneCell(1, 6, emptyWaterCell, 1);
-            //Thread.Sleep(250);
-            //DrawOneCell(3, 6, fullWaterCell, 1);
-            //Thread.Sleep(250);
-            //DrawOneCell(5, 6, aliveShipCell, 1);
-            //Thread.Sleep(250);
-            //DrawOneCell(7, 6, damagedAliveShipCell, 1);
-            //Thread.Sleep(250);
-            //DrawOneCell(9, 6, deadShipCell, 1);
-            //DisplayMessage("", 2, 50, true, true);
+            Thread.Sleep(250);
+            DrawOneCell(1, 6, emptyWaterCell, 1);
+            Thread.Sleep(250);
+            DrawOneCell(3, 6, fullWaterCell, 1);
+            Thread.Sleep(250);
+            DrawOneCell(5, 6, aliveShipCell, 1);
+            Thread.Sleep(250);
+            DrawOneCell(7, 6, damagedAliveShipCell, 1);
+            Thread.Sleep(250);
+            DrawOneCell(9, 6, deadShipCell, 1);
+            DisplayMessage("", 2, 50, true, true);
 
-            //DisplayMessage("When you shoot the water and there is no ship there, it means you missed and the water will become full. Also you can hit the ship or destroy it. In this case, you will get extra move.", 3, 50, true, true);
+            DisplayMessage("When you shoot the water and there is no ship there, it means you missed and the water will become full. Also you can hit the ship or destroy it. In this case, you will get extra move.", 3, 50, true, true);
 
-            //DisplayMessage("The ships are randomly generated. *PAUSE*You have to make your move by specifying cell without spaces. *PAUSE*Example : \"4-B\", \"10-G\"", 4, 50, true, true);
+            DisplayMessage("The ships are randomly generated. *PAUSE*You have to make your move by specifying cell without spaces. *PAUSE*Example : \"4-B\", \"10-G\"", 4, 50, true, true);
 
-            //DisplayMessage("Press any key to start sea battle. *PAUSE*Good luck!", 5, 50, true, true);
-            //Console.Clear();
+            DisplayMessage("Press any key to start sea battle. *PAUSE*Good luck!", 5, 50, true, true);
+            Console.Clear();
 
             bool isRestarted = false;
 
