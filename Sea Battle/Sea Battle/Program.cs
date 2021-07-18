@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 
-//7 days 
-// ~36 hours
+//8 days 
+// ~40 hours
 
 namespace Sea_Battle
 {
@@ -51,7 +51,6 @@ namespace Sea_Battle
         static char[,] playerTwoVisibleField = new char[11, 11];
 
         static bool someoneWin = false;
-        static bool firstPlayerIsWinner;
         static bool hasExtraMove = false;
 
         static bool enemyHitTheShip = false;
@@ -984,12 +983,15 @@ namespace Sea_Battle
                                             directionX = random.Next(-1, 2);
                                         }
 
-                                        if (position[0] + directionX < 1 || position[0] + directionX > 10)
-                                            break;
+                                        if (directionX == -1)
+                                            position[0] = simpleOtherDamagedSegmentsPosX[0] - 1;
                                         else
-                                            position[0] += directionX;
+                                            position[0] = simpleOtherDamagedSegmentsPosX.Last() + 1;
 
-                                        break;
+                                        if (position[0] < 1 || position[0] > 10)
+                                            goto RepeatPositionAssignment;
+                                        else
+                                            break;
                                     case 1: //Y axis
                                         directionY = 0;
                                         while (directionY == 0)
@@ -997,12 +999,15 @@ namespace Sea_Battle
                                             directionY = random.Next(-1, 2);
                                         }
 
-                                        if (position[1] + directionY < 1 || position[1] + directionY > 10)
-                                            break;
+                                        if (directionY == -1)
+                                            position[1] = simpleOtherDamagedSegmentsPosY[0] - 1;
                                         else
-                                            position[1] += directionY;
+                                            position[1] = simpleOtherDamagedSegmentsPosY.Last() + 1;
 
-                                        break;
+                                        if (position[1] < 1 || position[1] > 10)
+                                            goto RepeatPositionAssignment;
+                                        else
+                                            break;
                                 }
                                 break;
                             case 'x':
@@ -1017,7 +1022,10 @@ namespace Sea_Battle
                                 else
                                     position[0] = simpleOtherDamagedSegmentsPosX.Last() + 1;
 
-                                break;
+                                if (position[0] < 1 || position[0] > 10)
+                                    goto RepeatPositionAssignment;
+                                else
+                                    break;
                             case 'y':
                                 directionY = 0;
                                 while (directionY == 0)
@@ -1030,7 +1038,10 @@ namespace Sea_Battle
                                 else
                                     position[1] = simpleOtherDamagedSegmentsPosY.Last() + 1;
 
-                                break;
+                                if (position[1] < 1 || position[1] > 10)
+                                    goto RepeatPositionAssignment;
+                                else
+                                    break;
                         }
 
                     }
@@ -1173,7 +1184,6 @@ namespace Sea_Battle
                     ClearMessage(new string('*', 170), 1, 20, false, false, true);
 
                     DisplayMessage("You have won! The gods of the sea blessed you. Enter \"play\" if you want to play again and \"exit\" if you are tired and want to finish.", 0, 10, false, false);
-                    firstPlayerIsWinner = true;
                 }
                 else //enemy won
                 {
@@ -1181,7 +1191,6 @@ namespace Sea_Battle
                     ClearMessage(new string('*', 170), 1, 20, false, false, true);
 
                     DisplayMessage("The enemy has won. Luck was chasing you but you were faster! Try a little slower next time. Enter \"play\" if you want to play again and \"exit\" if you are tired and want to finish.", 0, 10, false, false);
-                    firstPlayerIsWinner = false;
                 }
                 return;
             }
@@ -1215,7 +1224,6 @@ namespace Sea_Battle
 
             ////greetings and instruction
             DisplayMessage("Expand the game to full screen to avoid bugs/glitches. *PAUSE*Then press any key to read short instruction and start sea battle.", 0, 50, true, true);
-
 
             DisplayMessage("Hi! *PAUSE*I am Dima and this is my game \"Sea Battle\". *PAUSE*I have spent 7 days and about 36 hours of continuous work making it. *PAUSE*Press any key to read short instruction.", 1, 50, true, true);
 
@@ -1299,6 +1307,7 @@ namespace Sea_Battle
                     isRestarted = true;
                     goto RESTART;
                 case "play":
+                    //starting game
                     break;
                 default:
                     ClearMessage(new string('*', 170), 0, 20, false, false, true);
@@ -1349,24 +1358,15 @@ namespace Sea_Battle
                     Environment.Exit(0);
                     break;
                 default:
-                    ClearMessage(new string('*', 170), 0, 20, false, false, true);
                     ClearMessage(new string('*', 170), 1, 20, false, false, true);
 
-                    DisplayMessage("Invalid request. Press any key to start again.", 0, 10, false, false);
+                    DisplayMessage("Invalid request. Press any key to start again.", 1, 10, false, false);
                     Console.ReadKey();
 
-                    ClearMessage(new string('*', 170), 0, 20, false, false, true);
                     ClearMessage(new string('*', 170), 1, 20, false, false, true);
 
                     goto WinningInputError;
             }
-
-            //ClearMessage("Press any key to start sea battle.", 0 , true, true);
-
-            //EditOneCell("3-B", playerOneField, damagedAliveShipCell, 1, true);
-            //EditOneCell("2-B", playerOneField, aliveShipCell, 1, true);
-
-            Console.ReadKey();
         }
     }
 }
